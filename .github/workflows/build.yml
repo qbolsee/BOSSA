@@ -12,7 +12,7 @@ jobs:
        uses: actions/checkout@v1
      - name: Compile
        run: |
-         make bossac -j4
+         make bossac
          strip bossac
      - name: See bin directory
        run: ls bin
