@@ -3,7 +3,7 @@
 //
 // Copyright (c) 2011-2012, ShumaTech
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
 //     * Redistributions of source code must retain the above copyright
@@ -14,7 +14,7 @@
 //     * Neither the name of the <organization> nor the
 //       names of its contributors may be used to endorse or promote products
 //       derived from this software without specific prior written permission.
-// 
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 // ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -256,7 +256,7 @@ void
 CommandBod::invoke(char* argv[], int argc)
 {
     bool value;
-    
+
     if (!argNum(argc, 2) ||
         !argBool(argv[1], &value) ||
         !flashable())
@@ -283,7 +283,7 @@ void
 CommandBootf::invoke(char* argv[], int argc)
 {
     bool value;
-    
+
     if (!argNum(argc, 2) ||
         !argBool(argv[1], &value) ||
         !flashable())
@@ -304,7 +304,7 @@ void
 CommandBor::invoke(char* argv[], int argc)
 {
     bool value;
-    
+
     if (!argNum(argc, 2) ||
         !argBool(argv[1], &value) ||
         !flashable())
@@ -674,7 +674,7 @@ CommandMwb::invoke(char* argv[], int argc)
             char* input = readline("? ");
             if (!input)
                 return;
-            if (input == '\0' ||
+            if (*input == '\0' ||
                 !argUint32(input, &value))
             {
                 free(input);
@@ -777,7 +777,7 @@ CommandMww::invoke(char* argv[], int argc)
             char* input = readline("? ");
             if (!input)
                 return;
-            if (input == '\0' ||
+            if (*input == '\0' ||
                 !argUint32(input, &value))
             {
                 free(input);
@@ -852,7 +852,7 @@ CommandPio::invoke(char* argv[], int argc)
 
         line = (1 << line);
     }
-    
+
     port = tolower(argv[1][1]);
 
     chipId = _samba.chipId();
@@ -923,7 +923,7 @@ CommandPio::invoke(char* argv[], int argc)
         {
             uint32_t reg = _samba.readWord(addr + PIO_PSR);
             printf("PIO Mode      : %s\n", (reg & line) ? "enable" : "disable");
-            
+
             reg = _samba.readWord(addr + PIO_OSR);
             printf("Direction     : %s\n", (reg & line) ? "output" : "input");
 
@@ -932,7 +932,7 @@ CommandPio::invoke(char* argv[], int argc)
 
             reg = _samba.readWord(addr + PIO_ODSR);
             printf("Output Level  : %s\n", (reg & line)? "high" : "low");
-            
+
             reg = _samba.readWord(addr + PIO_MDSR);
             printf("Multi-Drive   : %s\n", (reg & line)? "enable" : "disable");
 
@@ -949,7 +949,7 @@ CommandPio::invoke(char* argv[], int argc)
 
             uint32_t reg = _samba.readWord(addr + PIO_PSR);
             printf("PIO Mode      : %s\n", binstr(reg, 32, 'D', 'E'));
-            
+
             reg = _samba.readWord(addr + PIO_OSR);
             printf("Direction     : %s\n", binstr(reg, 32, 'I', 'O'));
 
@@ -958,13 +958,13 @@ CommandPio::invoke(char* argv[], int argc)
 
             reg = _samba.readWord(addr + PIO_ODSR);
             printf("Output Level  : %s\n", binstr(reg, 32, 'L', 'H'));
-            
+
             reg = _samba.readWord(addr + PIO_MDSR);
             printf("Multi-Drive   : %s\n", binstr(reg, 32, 'D', 'E'));
-            
+
             reg = _samba.readWord(addr + PIO_PUSR);
             printf("Pull-Up       : %s\n", binstr(reg, 32, 'E', 'D'));
-            
+
             reg = _samba.readWord(addr + PIO_ABSR);
             printf("Peripheral    : %s\n", binstr(reg, 32, 'A', 'B'));
         }
@@ -997,7 +997,7 @@ CommandPio::invoke(char* argv[], int argc)
     else if (strncasecmp(argv[2], "peripheral", len) == 0)
     {
         uint32_t reg;
-        
+
         if (!argNum(argc, 4))
             return;
 
@@ -1014,7 +1014,7 @@ CommandPio::invoke(char* argv[], int argc)
 
         _samba.writeWord(addr + PIO_ABSR, reg);
         _samba.writeWord(addr + PIO_PDR, line);
-        
+
         printf("%s set to peripheral %s\n", argv[1], argv[3]);
     }
     else if (strncasecmp(argv[2], "pullup", len) == 0)
@@ -1023,7 +1023,7 @@ CommandPio::invoke(char* argv[], int argc)
         if (!argNum(argc, 4) ||
             !argState(argv[3], &state))
             return;
-        
+
         if (state)
             _samba.writeWord(addr + PIO_PUER, line);
         else
@@ -1036,7 +1036,7 @@ CommandPio::invoke(char* argv[], int argc)
         if (!argNum(argc, 4) ||
             !argState(argv[3], &state))
             return;
-        
+
         if (state)
             _samba.writeWord(addr + PIO_MDER, line);
         else
@@ -1190,4 +1190,3 @@ CommandReset::invoke(char* argv[], int argc)
 {
     _samba.reset();
 }
-

@@ -203,6 +203,8 @@ BOSSASH_LIBS=-lreadline $(COMMON_LIBS)
 #
 all: $(BINDIR)/bossa$(EXE) $(BINDIR)/bossac$(EXE) $(BINDIR)/bossash$(EXE)
 
+bossac: $(BINDIR)/bossac$(EXE)
+
 #
 # Common rules
 #

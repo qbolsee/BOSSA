@@ -1,0 +1,36 @@
+name: Release workflow
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-ubuntu:
+    runs-on: ubuntu-18.04
+    steps:
+     - name: Checkout
+       uses: actions/checkout@v1
+     - name: Compile
+       run: |
+         make bossac
+     - name: See bin directory
+       run: ls bin
+     - uses: actions/upload-artifact@v2
+       with:
+         name: Ubuntu
+         path: bin/bossac
+
+  build-macos:
+    runs-on: macOS-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Compile
+        run: |
+          make bossac
+      - name: See bin directory
+        run: ls bin
+      - uses: actions/upload-artifact@v2
+        with:
+          name: macOS
+          path: dist/bossac
