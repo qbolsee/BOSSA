@@ -12,7 +12,8 @@ jobs:
        uses: actions/checkout@v1
      - name: Compile
        run: |
-         make bossac
+         make bossac -j4
+         strip bossac
      - name: See bin directory
        run: ls bin
      - uses: actions/upload-artifact@v2
@@ -21,13 +22,17 @@ jobs:
          path: bin/bossac
 
   build-ubuntu-i686:
-    runs-on: ubuntu-18.04-x86
+    runs-on: ubuntu-18.04
     steps:
      - name: Checkout
        uses: actions/checkout@v1
+     - name: Install missing libs
+       run: |
+         sudo apt-get install gcc-multilib g++-multilib
      - name: Compile
        run: |
-         make bossac
+         make bossac-i686
+         make strip-bossac
      - name: See bin directory
        run: ls bin
      - uses: actions/upload-artifact@v2
@@ -43,6 +48,7 @@ jobs:
       - name: Compile
         run: |
           make bossac
+          make strip-bossac
       - name: See bin directory
         run: ls bin
       - uses: actions/upload-artifact@v2

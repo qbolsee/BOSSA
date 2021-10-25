@@ -205,6 +205,8 @@ all: $(BINDIR)/bossa$(EXE) $(BINDIR)/bossac$(EXE) $(BINDIR)/bossash$(EXE)
 
 bossac: $(BINDIR)/bossac$(EXE)
 
+bossac-i686: clean $(eval BOSSAC_CXXFLAGS += -m32) $(eval BOSSAC_LDFLAGS += -m32) $(eval COMMON_CXXFLAGS += -m32) $(eval COMMON_LDFLAGS += -m32) $(BINDIR)/bossac$(EXE)
+
 #
 # Common rules
 #
