@@ -20,6 +20,21 @@ jobs:
          name: Ubuntu
          path: bin/bossac
 
+  build-ubuntu-i686:
+    runs-on: ubuntu-18.04-x86
+    steps:
+     - name: Checkout
+       uses: actions/checkout@v1
+     - name: Compile
+       run: |
+         make bossac
+     - name: See bin directory
+       run: ls bin
+     - uses: actions/upload-artifact@v2
+       with:
+         name: Ubuntu
+         path: bin/bossac
+
   build-macos:
     runs-on: macOS-latest
     steps:
