@@ -13,7 +13,7 @@ jobs:
      - name: Compile
        run: |
          make bossac
-         strip bossac
+         make strip-bossac
      - name: See bin directory
        run: ls bin
      - uses: actions/upload-artifact@v2
@@ -32,7 +32,7 @@ jobs:
      - name: Compile
        run: |
          export CXX_EXTRA=-m32
-         make bossac-i686
+         make bossac
          make strip-bossac
      - name: See bin directory
        run: ls bin
