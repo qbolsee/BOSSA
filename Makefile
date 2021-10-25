@@ -175,7 +175,7 @@ ARMOBJCOPY=$(ARM)objcopy
 # CXX Flags
 #
 # COMMON_CXXFLAGS+=-Wall -Werror -MT $@ -MD -MP -MF $(@:%.o=%.d) -DVERSION=\"$(VERSION)\" -g -O2
-COMMON_CXXFLAGS+=-Wall -MT $@ -MD -MP -MF $(@:%.o=%.d) -DVERSION=\"$(VERSION)\" -g -O2
+COMMON_CXXFLAGS+=-Wall -MT $@ -MD -MP -MF $(@:%.o=%.d) -DVERSION=\"$(VERSION)\" -g -O2 $(CXX_EXTRA)
 WX_CXXFLAGS:=$(shell wx-config --cxxflags --version=$(WXVERSION)) -DWX_PRECOMP -Wno-ctor-dtor-privacy -O2 -fno-strict-aliasing
 BOSSA_CXXFLAGS=$(COMMON_CXXFLAGS) $(WX_CXXFLAGS)
 BOSSAC_CXXFLAGS=$(COMMON_CXXFLAGS)
@@ -184,7 +184,7 @@ BOSSASH_CXXFLAGS=$(COMMON_CXXFLAGS)
 #
 # LD Flags
 #
-COMMON_LDFLAGS+=-g
+COMMON_LDFLAGS+=-g $(CXX_EXTRA)
 BOSSA_LDFLAGS=$(COMMON_LDFLAGS)
 BOSSAC_LDFLAGS=$(COMMON_LDFLAGS)
 BOSSASH_LDFLAGS=$(COMMON_LDFLAGS)
@@ -204,8 +204,6 @@ BOSSASH_LIBS=-lreadline $(COMMON_LIBS)
 all: $(BINDIR)/bossa$(EXE) $(BINDIR)/bossac$(EXE) $(BINDIR)/bossash$(EXE)
 
 bossac: $(BINDIR)/bossac$(EXE)
-
-bossac-i686: clean $(eval COMMON_CXXFLAGS += -m32) $(eval COMMON_LDFLAGS += -m32) $(BINDIR)/bossac$(EXE)
 
 #
 # Common rules

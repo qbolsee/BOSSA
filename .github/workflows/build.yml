@@ -31,6 +31,7 @@ jobs:
          sudo apt-get install gcc-multilib g++-multilib
      - name: Compile
        run: |
+         export CXX_EXTRA=-m32
          make bossac-i686
          make strip-bossac
      - name: See bin directory
