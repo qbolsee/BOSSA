@@ -38,7 +38,7 @@ jobs:
        run: ls bin
      - uses: actions/upload-artifact@v2
        with:
-         name: Ubuntu
+         name: Ubuntu-i686
          path: bin/bossac
 
   build-macos:
