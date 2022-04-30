@@ -16,7 +16,6 @@ jobs:
          platform: i686
      - name: Compile
        run: |
-         export CXX_EXTRA=-m32
          mingw32-make bossac
          mingw32-make strip-bossac
      - name: See bin directory
