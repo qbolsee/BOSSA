@@ -14,14 +14,11 @@ jobs:
        uses: egor-tensin/setup-mingw@v2
        with:
          platform: i686
-     - name: Install missing libs
-       run: |
-         sudo apt-get install gcc-multilib g++-multilib
      - name: Compile
        run: |
          export CXX_EXTRA=-m32
-         make bossac
-         make strip-bossac
+         mingw32-make bossac
+         mingw32-make strip-bossac
      - name: See bin directory
        run: ls bin
      - uses: actions/upload-artifact@v2
