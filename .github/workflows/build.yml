@@ -20,10 +20,19 @@ jobs:
          mingw32-make strip-bossac
      - name: See bin directory
        run: ls bin
+     - name: Compress action step
+       uses: a7ul/tar-action@v1.1.0
+       id: compress
+       with:
+         command: c
+         cwd: ./bin
+         files: |
+           bossac.exe
+         outPath: bossac-windows.tar.gz
      - uses: actions/upload-artifact@v2
        with:
-         name: Windows
-         path: bin/bossac.exe
+         name: Ubuntu
+         path: bossac-windows.tar.gz
 
   build-ubuntu:
     runs-on: ubuntu-18.04
@@ -36,10 +45,20 @@ jobs:
          make strip-bossac
      - name: See bin directory
        run: ls bin
+     - name: Compress action step
+       uses: a7ul/tar-action@v1.1.0
+       id: compress
+       with:
+         command: c
+         cwd: ./bin
+         files: |
+           bossac
+         outPath: bossac-i686-linux-gnu.tar.gz
      - uses: actions/upload-artifact@v2
        with:
          name: Ubuntu
-         path: bin/bossac
+         path: bossac-x86_64-linux-gnu.tar.gz
+
 
   build-ubuntu-i686:
     runs-on: ubuntu-18.04
@@ -56,10 +75,21 @@ jobs:
          make strip-bossac
      - name: See bin directory
        run: ls bin
+     - name: Compress action step
+       uses: a7ul/tar-action@v1.1.0
+       id: compress
+       with:
+         command: c
+         cwd: ./bin
+         files: |
+           bossac
+         outPath: bossac-i686-linux-gnu.tar.gz
      - uses: actions/upload-artifact@v2
        with:
          name: Ubuntu-i686
-         path: bin/bossac
+         path: bossac-i686-linux-gnu.tar.gz
+
+
 
   build-macos:
     runs-on: macOS-latest
@@ -72,7 +102,16 @@ jobs:
           make strip-bossac
       - name: See bin directory
         run: ls bin
+      - name: Compress action step
+        uses: a7ul/tar-action@v1.1.0
+        id: compress
+        with:
+          command: c
+          cwd: ./bin
+          files: |
+            bossac
+          outPath: bossac-apple-darwin.tar.gz
       - uses: actions/upload-artifact@v2
         with:
           name: macOS
-          path: bin/bossac
+          path: bossac-apple-darwin.tar.gz
