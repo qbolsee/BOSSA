@@ -97,7 +97,11 @@ Flasher::write(const char* filename)
 
             // If multi-page write is available....
 
-            const uint32_t BLK_SIZE = 4096;
+            uint32_t BLK_SIZE = 4096;
+            if (numPages <= 1024) {
+                // weird workaround for SAMDx15/16
+                BLK_SIZE = 512;
+            }
             uint32_t offset = 0;
             uint8_t buffer[BLK_SIZE];
             memset(buffer, 0, BLK_SIZE);
@@ -179,6 +183,10 @@ Flasher::verify(const char* filename)
 
             // Perform checksum every 4096 bytes
             uint32_t BLK_SIZE = 4096;
+            if (numPages <= 1024) {
+                // weird workaround for SAMDx15/16
+                BLK_SIZE = 512;
+            }
             uint8_t buffer[BLK_SIZE];
             uint32_t offset = 0;
             while ((fbytes = fread(buffer, 1, BLK_SIZE, infile)) > 0) {
@@ -221,7 +229,7 @@ Flasher::verify(const char* filename)
             throw FileSizeError();
 
         printf("Verify %ld bytes of flash\n", fsize);
-	
+
 	const uint32_t divisor = (numPages / 10) ? (numPages / 10) : 1;
         while ((fbytes = fread(bufferA, 1, pageSize, infile)) > 0)
         {
