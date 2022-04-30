@@ -31,7 +31,7 @@ jobs:
          outPath: bossac-windows.tar.gz
      - uses: actions/upload-artifact@v2
        with:
-         name: Ubuntu
+         name: Windows
          path: bossac-windows.tar.gz
 
   build-ubuntu:
