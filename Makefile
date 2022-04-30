@@ -28,7 +28,11 @@ INSTALLDIR=install
 #
 # Determine OS
 #
-OS:=$(shell uname -s | cut -c -7)
+ifeq '$(findstring ;,$(PATH))' ';'
+    OS:=MINGW32
+else
+	OS:=$(shell uname -s | cut -c -7)
+endif
 
 #
 # Windows rules
