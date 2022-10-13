@@ -20,6 +20,8 @@ jobs:
          mingw32-make strip-bossac
      - name: See bin directory
        run: ls bin
+     - name: rename bin
+       run: mv bin release
      - name: Compress action step
        uses: a7ul/tar-action@v1.1.0
        id: compress
