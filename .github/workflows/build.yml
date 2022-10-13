@@ -43,15 +43,8 @@ jobs:
        run: ls bin
      - name: Move bin
        run: mv bin/ bossac/
-     - name: Compress action step
-       uses: a7ul/tar-action@v1.1.0
-       id: compress
-       with:
-         command: c
-         cwd: .
-         files: |
-           bossac
-         outPath: bossac-x86_64-linux-gnu.tar.gz
+     - name: Compress
+       run: tar -cvjSf bossac-x86_64-linux-gnu.tar.bz2 bossac
      - uses: actions/upload-artifact@v2
        with:
          name: Ubuntu
@@ -75,15 +68,8 @@ jobs:
        run: ls bin
      - name: Move bin
        run: mv bin/ bossac/
-     - name: Compress action step
-       uses: a7ul/tar-action@v1.1.0
-       id: compress
-       with:
-         command: c
-         cwd: .
-         files: |
-           bossac
-         outPath: bossac-i686-linux-gnu.tar.gz
+     - name: Compress
+       run: tar -cvjSf bossac-i686-linux-gnu.tar.bz2 bossac
      - uses: actions/upload-artifact@v2
        with:
          name: Ubuntu-i686
@@ -104,15 +90,8 @@ jobs:
         run: ls bin
       - name: Move bin
         run: mv bin/ bossac/
-      - name: Compress action step
-        uses: a7ul/tar-action@v1.1.0
-        id: compress
-        with:
-          command: c
-          cwd: .
-          files: |
-            bossac
-          outPath: bossac-apple-darwin.tar.gz
+      - name: Compress
+        run: tar -cvjSf bossac-apple-darwin.tar.bz2 bossac
       - uses: actions/upload-artifact@v2
         with:
           name: macOS
