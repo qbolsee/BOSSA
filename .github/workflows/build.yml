@@ -25,9 +25,9 @@ jobs:
        id: compress
        with:
          command: c
-         cwd: ./bin
+         cwd: .
          files: |
-           bossac.exe
+           bin
          outPath: bossac-windows.tar.gz
      - uses: actions/upload-artifact@v2
        with:
@@ -50,9 +50,9 @@ jobs:
        id: compress
        with:
          command: c
-         cwd: ./bin
+         cwd: .
          files: |
-           bossac
+           bin
          outPath: bossac-x86_64-linux-gnu.tar.gz
      - uses: actions/upload-artifact@v2
        with:
@@ -80,9 +80,9 @@ jobs:
        id: compress
        with:
          command: c
-         cwd: ./bin
+         cwd: .
          files: |
-           bossac
+           bin
          outPath: bossac-i686-linux-gnu.tar.gz
      - uses: actions/upload-artifact@v2
        with:
@@ -107,9 +107,9 @@ jobs:
         id: compress
         with:
           command: c
-          cwd: ./bin
+          cwd: .
           files: |
-            bossac
+            bin
           outPath: bossac-apple-darwin.tar.gz
       - uses: actions/upload-artifact@v2
         with:
