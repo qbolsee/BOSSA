@@ -22,9 +22,9 @@ jobs:
        run: ls bin
      - name: Move bin
        run: mv bin/ bossac/
-     - uses: montudor/action-zip@v1
-       with:
-         args: zip -qq -r bossac-windows.zip bossac
+     - name: Compress archive
+       shell: pwsh
+       run: Compress-Archive -Path bossac -DestinationPath bossac-windows.zip
      - uses: actions/upload-artifact@v2
        with:
          name: Windows
